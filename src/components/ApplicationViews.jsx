@@ -3,6 +3,7 @@ import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 import { Authorized } from "./Authorized";
 import { LandingPage } from "../pages/LandingPage";
+import { RestaurantDetails } from "../pages/RestaurantDetails";
 
 export const ApplicationViews = () => {
   return (
@@ -12,6 +13,10 @@ export const ApplicationViews = () => {
       {/* Outlet element inside Authorized component so all remaining routes will render as children of Authorized - aka if user is authorized to view said routes */}
       <Route element={<Authorized />} />
       <Route path="/" element={<LandingPage />} />
+      <Route
+        path="/restaurants/:restaurantId"
+        element={<RestaurantDetails />}
+      />
     </Routes>
   );
 };
