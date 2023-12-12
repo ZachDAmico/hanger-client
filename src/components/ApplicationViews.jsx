@@ -4,6 +4,7 @@ import { Register } from "../pages/Register";
 import { Authorized } from "./Authorized";
 import { LandingPage } from "../pages/LandingPage";
 import { RestaurantDetails } from "../pages/RestaurantDetails";
+import { NewReviewForm } from "../pages/NewReviewForm";
 
 export const ApplicationViews = () => {
   return (
@@ -16,6 +17,10 @@ export const ApplicationViews = () => {
       <Route
         path="/restaurants/:restaurantId"
         element={<RestaurantDetails />}
+      />
+      <Route
+        path="/restaurants/:restaurantId/add-review"
+        element={<NewReviewForm />}
       />
     </Routes>
   );

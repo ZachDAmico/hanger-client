@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getRestaurantById } from "../fetches/RestaurantFetches";
 
 export const RestaurantDetails = () => {
   const [restaurantDetails, setRestaurantDetails] = useState({});
   const { restaurantId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getRestaurantById(restaurantId).then((restaurantObj) => {
       setRestaurantDetails(restaurantObj);
     });
   }, [restaurantId]);
+
+  const handleAddingReview = () => {
+    navigate(`/restaurants/${restaurantId / add - review}`);
+  };
 
   return (
     <div>
@@ -30,8 +35,17 @@ export const RestaurantDetails = () => {
         </ul>
       ) : (
         // check this functionality by having restaurant with no reviews!
-        <p>Be the first review!</p>
+        <div>
+          <p>{restaurantDetails.name}</p>
+          <p>Be the first review!</p>
+        </div>
       )}
+      <button onClick={handleAddingReview}>Add a Review</button>
+      <button>
+        {restaurantDetails.isFavorite
+          ? "Remove from Favorites"
+          : "Add to Favorites"}
+      </button>
     </div>
   );
 };
