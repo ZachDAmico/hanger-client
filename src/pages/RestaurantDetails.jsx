@@ -14,7 +14,7 @@ export const RestaurantDetails = () => {
   }, [restaurantId]);
 
   const handleAddingReview = () => {
-    navigate(`/restaurants/${restaurantId / add - review}`);
+    navigate(`/restaurants/${restaurantId}/addReview`);
   };
 
   return (

@@ -19,7 +19,7 @@ export const ApplicationViews = () => {
         element={<RestaurantDetails />}
       />
       <Route
-        path="/restaurants/:restaurantId/add-review"
+        path="/restaurants/:restaurantId/addReview"
         element={<NewReviewForm />}
       />
     </Routes>
