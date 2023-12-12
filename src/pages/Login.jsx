@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const existDialog = useRef();
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const Login = () => {
     fetch(`http://localhost:8000/login`, {
       method: "POST",
 
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, password }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -50,8 +50,8 @@ export const Login = () => {
             <input
               type="username"
               id="inputEmail"
-              value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
+              value={username}
+              onChange={(evt) => setUsername(evt.target.value)}
               className="form-control"
               placeholder="Email address"
               required
