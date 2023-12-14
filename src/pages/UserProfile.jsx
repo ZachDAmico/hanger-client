@@ -1,49 +1,59 @@
 import { useEffect, useState } from "react";
 import { getUser } from "../fetches/UserFetches";
 import PropTypes from "prop-types";
+import { getAllUserFavorites } from "../fetches/FavoriteFetches";
+
 export const UserProfile = ({ currentUser }) => {
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState();
+  const [userFavorites, setUserFavorites] = useState([]);
+
+  // useEffect(() => {
+  //   getUser().then((userObj) => {
+  //     setUser(userObj);
+  //     getAllUserFavorites().then((favArray) => {
+  //       setUserFavorites(favArray);
+  //     });
+  //   });
+  // }, []);
   useEffect(() => {
-    getUser().then((userArray) => {
-      setUsers(userArray);
-    });
-  }, []);
+    // Check if currentUser.id exists before making the request
+    if (currentUser && currentUser.id) {
+      getUser(currentUser.id).then((userObj) => {
+        setUser(userObj);
+        getAllUserFavorites().then((favArray) => {
+          setUserFavorites(favArray);
+        });
+      });
+    }
+  }, [currentUser]);
+
   return (
     <div>
       <h2>Welcome to Your Profile</h2>
       <div>
-        {users.map(
-          (user) =>
-            // Display first name only if it matches currentUser's ID
-            user.id === currentUser.id && (
-              <div key={user.id}>
-                <div>Profile Pic placeholder</div>
-                <div>First Name: {user.first_name}</div>
-                <div>Last Name: {user.last_name}</div>
-                <div>Username: {user.username}</div>
-                <div>Email: {user.email}</div>
-                <h3>Favorites: </h3>
-                {user.favorite_restaurants &&
-                user.favorite_restaurants.length > 0 ? (
-                  user.favorite_restaurants.map((restaurant) => (
-                    <div key={restaurant.id}>
-                      <p>Name: {restaurant.name}</p>
-                      <img src={restaurant.img_url} alt={restaurant.name} />
-                    </div>
-                  ))
-                ) : (
-                  <p>No favorite restaurants!? Better get to work!</p>
-                )}
-              </div>
-            )
+        {user ? (
+          <div key={user.id}>
+            <div>Profile Pic placeholder</div>
+            <div>First Name: {user.first_name}</div>
+            <div>Last Name: {user.last_name}</div>
+            <div>Username: {user.username}</div>
+            <div>Email: {user.email}</div>
+            <h3>Favorites: </h3>
+            {userFavorites.map((favorite) => (
+              <div key={favorite.restaurant.id}>{favorite.restaurant.name}</div>
+            ))}
+          </div>
+        ) : (
+          <div>Loading or Error Message</div>
         )}
       </div>
     </div>
   );
 };
+
 UserProfile.propTypes = {
   currentUser: PropTypes.shape({
     id: PropTypes.number,
     // Add other prop types for currentUser as needed
-  }).isRequired,
+  }),
 };

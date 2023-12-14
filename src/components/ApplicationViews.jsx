@@ -7,6 +7,7 @@ import { RestaurantDetails } from "../pages/RestaurantDetails";
 import { NewReviewForm } from "../pages/NewReviewForm";
 import { UserProfile } from "../pages/UserProfile";
 import { useEffect, useState } from "react";
+import { EditReviewForm } from "../pages/EditReviewForm";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -25,7 +26,7 @@ export const ApplicationViews = () => {
         <Route path="/" element={<LandingPage />} />
         <Route
           path="/restaurants/:restaurantId"
-          element={<RestaurantDetails />}
+          element={<RestaurantDetails currentUser={currentUser} />}
         />
         <Route
           path="/restaurants/:restaurantId/addReview"
@@ -34,6 +35,10 @@ export const ApplicationViews = () => {
         <Route
           path="/profile"
           element={<UserProfile currentUser={currentUser} />}
+        />
+        <Route
+          path="/restaurants/:restaurantId/editReview/:reviewId"
+          element={<EditReviewForm />}
         />
       </Route>
     </Routes>

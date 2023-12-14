@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createReview } from "../fetches/ReviewFetches";
+import { editReview, getReviewById } from "../fetches/ReviewFetches";
 
-export const NewReviewForm = () => {
+export const EditReviewForm = () => {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
-  const [favorite, setFavorite] = useState(false);
-  const { restaurantId } = useParams();
+  const { restaurantId, reviewId } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchReviewData = async () => {
+      try {
+        const userToken = JSON.parse(
+          localStorage.getItem("hanger_token")
+        ).token;
+        const existingReview = await getReviewById(reviewId, userToken);
+        setRating(existingReview.rating);
+        setComment(existingReview.comment);
+      } catch (error) {
+        console.error("Error fetching review data:", error);
+      }
+    };
+
+    fetchReviewData();
+  }, [reviewId]);
 
   const handleRatingChange = (event) => {
     setRating(parseInt(event.target.value, 10));
@@ -17,34 +33,28 @@ export const NewReviewForm = () => {
     setComment(event.target.value);
   };
 
-  // const handleFavoriteChange = async (event) => {
-  //   setFavorite(event.target.checked);
-  // };
-
-  // need to create Post fetch for reviews
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const reviewObject = {
+    const editedReview = {
       restaurant_id: restaurantId,
       rating,
       comment,
-      favorite,
     };
 
     try {
       const userToken = JSON.parse(localStorage.getItem("hanger_token")).token;
-      const result = await createReview(reviewObject, userToken);
-      console.log("Review created:", result);
+      const result = await editReview(editedReview, reviewId, userToken);
+      console.log("Review edited:", result);
       navigate(`/restaurants/${restaurantId}`);
     } catch (error) {
-      console.error("Error creating review:", error);
+      console.error("Error editing review:", error);
     }
   };
 
   return (
     <div>
-      <h2>Add Your Review</h2>
+      <h2>Edit Your Review</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Comment:
@@ -60,17 +70,7 @@ export const NewReviewForm = () => {
             <option value={5}>5</option>
           </select>
         </label>
-        {/* <div>
-          <label>Add to Favorites</label>
-          <input
-            type="checkbox"
-            checked={favorite}
-            name="favorite"
-            id="newFavorite"
-            onChange={handleFavoriteChange}
-          />
-        </div> */}
-        <button type="submit">Submit Review</button>
+        <button type="submit">Submit Edited Review</button>
       </form>
     </div>
   );
