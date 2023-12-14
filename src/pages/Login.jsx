@@ -46,14 +46,14 @@ export const Login = () => {
           <h1 className="text-4xl mt-7 mb-3">Hanger Management</h1>
           <h2 className="text-xl mb-10">Please sign in</h2>
           <fieldset className="mb-4">
-            <label htmlFor="inputEmail"> Email address </label>
+            <label htmlFor="username"> Username </label>
             <input
               type="username"
-              id="inputEmail"
+              id="inputUsername"
               value={username}
               onChange={(evt) => setUsername(evt.target.value)}
               className="form-control"
-              placeholder="Email address"
+              placeholder="Username"
               required
               autoFocus
             />

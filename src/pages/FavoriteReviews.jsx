@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRestaurantById } from "../fetches/RestaurantFetches";
-import { updateReviewFavoriteStatus } from "../fetches/FavoriteFetches";
 
-export const RestaurantDetails = () => {
+export const FavoriteReview = () => {
   const [restaurantDetails, setRestaurantDetails] = useState({});
-  const [favorite, setFavorite] = useState(false);
   const { restaurantId } = useParams();
   const navigate = useNavigate();
 
@@ -17,9 +15,6 @@ export const RestaurantDetails = () => {
 
   const handleAddingReview = () => {
     navigate(`/restaurants/${restaurantId}/addReview`);
-  };
-  const handleFavoriteChange = async (event) => {
-    setFavorite(event.target.checked);
   };
 
   return (
@@ -45,25 +40,6 @@ export const RestaurantDetails = () => {
         </div>
       )}
       <button onClick={handleAddingReview}>Add a Review</button>
-      <button onChange={updateReviewFavoriteStatus}>
-        {/* {restaurantDetails.isFavorite
-          ? "Remove from Favorites"
-          : "Add to Favorites"} */}
-      </button>
-      <div>
-        <label>
-          {restaurantDetails.isFavorite
-            ? "Remove from Favorites"
-            : "Add to Favorites"}
-        </label>
-        <input
-          type="checkbox"
-          checked={favorite}
-          name="favorite"
-          id="newFavorite"
-          onChange={handleFavoriteChange}
-        />
-      </div>
     </div>
   );
 };

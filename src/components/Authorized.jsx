@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { NavBar } from "./Navbar.jsx";
+import { NavBar } from "./NavBar";
 
 export const Authorized = () => {
   if (localStorage.getItem("hanger_token")) {
@@ -7,7 +7,7 @@ export const Authorized = () => {
       <>
         {/* double check NavBar import is correct */}
         <NavBar />
-        <main className="p-4">
+        <main className="flex items-center justify-center">
           <Outlet />
         </main>
       </>

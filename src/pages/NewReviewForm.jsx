@@ -17,6 +17,10 @@ export const NewReviewForm = () => {
     setComment(event.target.value);
   };
 
+  const handleFavoriteChange = async (event) => {
+    setFavorite(event.target.checked);
+  };
+
   // need to create Post fetch for reviews
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,6 +60,16 @@ export const NewReviewForm = () => {
             <option value={5}>5</option>
           </select>
         </label>
+        {/* <div>
+          <label>Add to Favorites</label>
+          <input
+            type="checkbox"
+            checked={favorite}
+            name="favorite"
+            id="newFavorite"
+            onChange={handleFavoriteChange}
+          />
+        </div> */}
         <button type="submit">Submit Review</button>
       </form>
     </div>
