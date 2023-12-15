@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { getAllUserFavorites } from "../fetches/FavoriteFetches";
 
 export const UserProfile = ({ currentUser }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const [userFavorites, setUserFavorites] = useState([]);
 
   // useEffect(() => {
@@ -18,7 +18,7 @@ export const UserProfile = ({ currentUser }) => {
   useEffect(() => {
     // Check if currentUser.id exists before making the request
     if (currentUser && currentUser.id) {
-      getUser(currentUser.id).then((userObj) => {
+      getUser(currentUser?.id).then((userObj) => {
         setUser(userObj);
         getAllUserFavorites().then((favArray) => {
           setUserFavorites(favArray);
@@ -32,17 +32,17 @@ export const UserProfile = ({ currentUser }) => {
       <h2>Welcome to Your Profile</h2>
       <div>
         {user ? (
-          <div key={user.id}>
-            <div>Profile Pic placeholder</div>
-            <div>First Name: {user.first_name}</div>
-            <div>Last Name: {user.last_name}</div>
-            <div>Username: {user.username}</div>
-            <div>Email: {user.email}</div>
+          <section>
+            <div key="info-1">Profile Pic placeholder</div>
+            <div key="info-2">First Name: {user.first_name}</div>
+            <div key="info-3">Last Name: {user.last_name}</div>
+            <div key="info-4">Username: {user.username}</div>
+            <div key="info-5">Email: {user.email}</div>
             <h3>Favorites: </h3>
-            {userFavorites.map((favorite) => (
-              <div key={favorite.restaurant.id}>{favorite.restaurant.name}</div>
+            {userFavorites.map((favorite, idx) => (
+              <div key={idx}>{favorite.restaurant.name}</div>
             ))}
-          </div>
+          </section>
         ) : (
           <div>Loading or Error Message</div>
         )}

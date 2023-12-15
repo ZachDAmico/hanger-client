@@ -2,19 +2,40 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getRestaurantById } from "../fetches/RestaurantFetches";
 import { updateReviewFavoriteStatus } from "../fetches/FavoriteFetches";
-export const RestaurantDetails = () => {
+import { deleteReview } from "../fetches/ReviewFetches";
+import PropTypes from "prop-types";
+export const RestaurantDetails = ({ currentUser }) => {
   const [restaurantDetails, setRestaurantDetails] = useState({});
   const [favorite, setFavorite] = useState(false);
   const { restaurantId } = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
     getRestaurantById(restaurantId).then((restaurantObj) => {
       setRestaurantDetails(restaurantObj);
     });
-  }, [restaurantId]);
+  }, [restaurantId, currentUser]);
+
   const handleAddingReview = () => {
     navigate(`/restaurants/${restaurantId}/addReview`);
   };
+
+  const handleEditReview = (reviewId) => {
+    navigate(`/restaurants/${restaurantId}/editReview/${reviewId}`);
+  };
+
+  const handleDeleteReview = async (reviewId) => {
+    try {
+      await deleteReview(reviewId);
+
+      getRestaurantById(restaurantId).then((restaurantObj) => {
+        setRestaurantDetails(restaurantObj);
+      });
+    } catch (error) {
+      console.error("Error handling review delete:", error.message);
+    }
+  };
+
   const handleFavoriteChange = async (event) => {
     setFavorite(event.target.checked);
     try {
@@ -43,6 +64,16 @@ export const RestaurantDetails = () => {
               <p>Rating: {review.rating}</p>
               <p>{review.comment}</p>
               <p>Date: {review.date}</p>
+              {currentUser.id === review.user.id && (
+                <>
+                  <button onClick={() => handleDeleteReview(review.id)}>
+                    Delete
+                  </button>
+                  <button onClick={() => handleEditReview(review.id)}>
+                    Edit
+                  </button>
+                </>
+              )}
             </li>
           ))}
         </ul>
@@ -65,4 +96,10 @@ export const RestaurantDetails = () => {
       </div>
     </div>
   );
+};
+RestaurantDetails.propTypes = {
+  currentUser: PropTypes.shape({
+    id: PropTypes.number,
+    // Add other prop types for currentUser as needed
+  }).isRequired,
 };
