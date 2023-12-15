@@ -17,20 +17,27 @@ export const ApplicationViews = () => {
     const localUserObject = JSON.parse(localUser);
     setCurrentUser(localUserObject);
   }, []);
+
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/login"
+        element={<Login setCurrentUser={setCurrentUser} />}
+      />
+      <Route
+        path="/register"
+        element={<Register setCurrentUser={setCurrentUser} />}
+      />
       {/* Outlet element inside Authorized component so all remaining routes will render as children of Authorized - aka if user is authorized to view said routes */}
       <Route element={<Authorized />}>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage currentUser={currentUser} />} />
         <Route
           path="/restaurants/:restaurantId"
           element={<RestaurantDetails currentUser={currentUser} />}
         />
         <Route
           path="/restaurants/:restaurantId/addReview"
-          element={<NewReviewForm />}
+          element={<NewReviewForm currentUser={currentUser} />}
         />
         <Route
           path="/profile"
@@ -38,7 +45,7 @@ export const ApplicationViews = () => {
         />
         <Route
           path="/restaurants/:restaurantId/editReview/:reviewId"
-          element={<EditReviewForm />}
+          element={<EditReviewForm currentUser={currentUser} />}
         />
       </Route>
     </Routes>

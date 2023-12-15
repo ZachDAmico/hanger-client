@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const Login = ({ setCurrentUser }) => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const existDialog = useRef();
@@ -22,6 +22,7 @@ export const Login = () => {
         if (authInfo.token) {
           // if (authInfo.valid) {
           localStorage.setItem("hanger_token", JSON.stringify(authInfo));
+          setCurrentUser(authInfo);
           navigate("/");
         } else {
           existDialog.current.showModal();
