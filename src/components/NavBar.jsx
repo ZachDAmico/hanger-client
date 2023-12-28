@@ -3,9 +3,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 export const NavBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-[100%] w-[128px] fixed z-1 top-0 left-0 bg-slate-500 overflow-x-hidden py-5 flex flex-col items-start justify-between">
+    <div className="h-[100%] w-[128px bg-black text-white flex flex-row items-center justify-around">
       {localStorage.getItem("hanger_token") !== null ? (
-        <div className="navbar__item -translate-y-2">
+        <div
+          className="navbar__item -translate-y-2"
+          style={{ lineHeight: "1.5" }}
+        >
           <button
             className="btn-delete"
             onClick={() => {
