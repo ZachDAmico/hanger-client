@@ -40,115 +40,133 @@ export const Register = ({ setCurrentUser }) => {
   };
 
   return (
-    <main className="container--login">
-      <dialog className="dialog dialog--auth" ref={existDialog}>
-        <div>User does not exist</div>
-        <button
-          className="button--close"
-          onClick={(e) => existDialog.current.close()}
-        >
-          Close
-        </button>
-      </dialog>
-
-      <section className="flex items-center justify-center">
-        <form className="form--login" onSubmit={handleRegister}>
-          <h1 className="text-4xl mt-7 mb-3">Hanger Management</h1>
-          <h2 className="text-xl mb-10">Register new account</h2>
-          <fieldset className="mb-4">
-            <label htmlFor="firstName"> First name: </label>
-            <input
-              type="text"
-              id="firstName"
-              value={firstName}
-              onChange={(evt) => setFirstName(evt.target.value)}
-              className="form-control"
-              placeholder=""
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="lastName"> Last name: </label>
-            <input
-              type="text"
-              id="lastName"
-              value={lastName}
-              onChange={(evt) => setLastName(evt.target.value)}
-              className="form-control"
-              placeholder=""
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="inputEmail"> User Name: </label>
-            <input
-              type="text"
-              id="inputUsername"
-              value={userName}
-              onChange={(evt) => setUserName(evt.target.value)}
-              className="form-control"
-              placeholder="User Name"
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="inputEmail"> Email address: </label>
-            <input
-              type="email"
-              id="inputEmail"
-              value={email}
-              onChange={(evt) => setEmail(evt.target.value)}
-              className="form-control"
-              placeholder="Email address"
-              required
-              autoFocus
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="inputPassword"> Password: </label>
-            <input
-              type="password"
-              id="inputPassword"
-              value={password}
-              onChange={(evt) => setPassword(evt.target.value)}
-              className="form-control"
-              placeholder="Password"
-            />
-          </fieldset>
-          <fieldset className="mb-4">
-            <label htmlFor="inputProfileImg"> Profile Image: </label>
-            <input
-              type="text"
-              id="inputProfileImg"
-              value={imgUrl}
-              onChange={(evt) => setImgUrl(evt.target.value)}
-              className="form-control"
-              placeholder="ImageUrl"
-            />
-          </fieldset>
-          <fieldset>
-            <button
-              type="submit"
-              className="button p-3 rounded-md bg-blue-800 text-blue-100"
-            >
-              Register
-            </button>
-          </fieldset>
-        </form>
-      </section>
-      <div className="loginLinks flex items-center justify-center">
-        <section className="link--register">
-          <Link
-            className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-            to="/login"
+    <div
+      style={{
+        backgroundImage: 'url("https://i.imgur.com/Aexb7zi.png")',
+        backgroundSize: "cover",
+        backgroundPosition: "left",
+        backgroundColor: "black", // Set the background color to black
+        display: "flex", // Use flexbox for centering
+        flexDirection: "column", // Align children vertically
+        justifyContent: "flex-start", // Align children at the top
+        alignItems: "center", // Center vertically
+        minHeight: "100vh", // Ensure the div covers the full viewport height
+      }}
+    >
+      <main className="container--login">
+        <dialog className="dialog dialog--auth" ref={existDialog}>
+          <div>User does not exist</div>
+          <button
+            className="button--close"
+            onClick={(e) => existDialog.current.close()}
           >
-            Already have an account?
-          </Link>
+            Close
+          </button>
+        </dialog>
+
+        <section className="flex items-center justify-center">
+          <form
+            className="form--login"
+            onSubmit={handleRegister}
+            style={{ color: "white" }}
+          >
+            <h1 className="text-4xl mt-7 mb-3">Hanger Management</h1>
+            <h2 className="text-xl mb-10">Register new account</h2>
+            <fieldset className="mb-4">
+              <label htmlFor="firstName"> First name: </label>
+              <input
+                type="text"
+                id="firstName"
+                value={firstName}
+                onChange={(evt) => setFirstName(evt.target.value)}
+                className="form-control"
+                placeholder=""
+                required
+                autoFocus
+              />
+            </fieldset>
+            <fieldset className="mb-4">
+              <label htmlFor="lastName"> Last name: </label>
+              <input
+                type="text"
+                id="lastName"
+                value={lastName}
+                onChange={(evt) => setLastName(evt.target.value)}
+                className="form-control"
+                placeholder=""
+                required
+                autoFocus
+              />
+            </fieldset>
+            <fieldset className="mb-4">
+              <label htmlFor="inputEmail"> User Name: </label>
+              <input
+                type="text"
+                id="inputUsername"
+                value={userName}
+                onChange={(evt) => setUserName(evt.target.value)}
+                className="form-control"
+                placeholder="User Name"
+                required
+                autoFocus
+              />
+            </fieldset>
+            <fieldset className="mb-4">
+              <label htmlFor="inputEmail"> Email address: </label>
+              <input
+                type="email"
+                id="inputEmail"
+                value={email}
+                onChange={(evt) => setEmail(evt.target.value)}
+                className="form-control"
+                placeholder="Email address"
+                required
+                autoFocus
+              />
+            </fieldset>
+            <fieldset className="mb-4">
+              <label htmlFor="inputPassword"> Password: </label>
+              <input
+                type="password"
+                id="inputPassword"
+                value={password}
+                onChange={(evt) => setPassword(evt.target.value)}
+                className="form-control"
+                placeholder="Password"
+              />
+            </fieldset>
+            <fieldset className="mb-4">
+              <label htmlFor="inputProfileImg"> Profile Image: </label>
+              <input
+                type="text"
+                id="inputProfileImg"
+                value={imgUrl}
+                onChange={(evt) => setImgUrl(evt.target.value)}
+                className="form-control"
+                placeholder="ImageUrl"
+              />
+            </fieldset>
+            <fieldset>
+              <button
+                type="submit"
+                className="button p-3 rounded-md bg-red-500 text-black"
+              >
+                Register
+              </button>
+            </fieldset>
+          </form>
         </section>
-      </div>
-    </main>
+        <div className="loginLinks flex items-center justify-center">
+          <section className="link--register">
+            <Link
+              className="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+              to="/login"
+            >
+              Already have an account?
+            </Link>
+          </section>
+        </div>
+      </main>
+    </div>
   );
 };
