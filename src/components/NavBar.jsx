@@ -6,9 +6,19 @@ export const NavBar = () => {
     <div className="h-[100%] w-[128px bg-black text-white flex flex-row items-center justify-around">
       {localStorage.getItem("hanger_token") !== null ? (
         <div
-          className="navbar__item -translate-y-2"
+          className="navbar__item -translate-y-2 flex flex-row items-center gap-80 mt-8"
           style={{ lineHeight: "1.5" }}
         >
+          <div className="btn-navbar">
+            <NavLink className="" to={"/"}>
+              Home
+            </NavLink>
+          </div>
+          <div className="navbar__item">
+            <NavLink className="btn-navbar" to={"/profile"}>
+              Profile
+            </NavLink>
+          </div>
           <button
             className="btn-delete"
             onClick={() => {
@@ -39,7 +49,7 @@ export const NavBar = () => {
           </li>
         </>
       )}
-      <div className="btn-navbar">
+      {/* <div className="btn-navbar">
         <NavLink className="" to={"/"}>
           Home
         </NavLink>
@@ -48,7 +58,7 @@ export const NavBar = () => {
         <NavLink className="btn-navbar" to={"/profile"}>
           Profile
         </NavLink>
-      </div>
+      </div> */}
     </div>
   );
 };
