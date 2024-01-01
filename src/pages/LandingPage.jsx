@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { getAllRestaurants } from "../fetches/RestaurantFetches";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFire } from "@fortawesome/free-solid-svg-icons";
 
 export const LandingPage = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -14,7 +16,7 @@ export const LandingPage = () => {
 
   return (
     <main
-      className="__landing-page-background__ bg-black flex flex-col items-center justify-start min-h-screen"
+      className="__landing-page-background__ bg-black flex flex-col items-center justify-start min-h-screen bg-fixed"
       style={{
         backgroundImage: 'url("https://i.imgur.com/BADyicN.png")',
         backgroundSize: "2500px auto",
@@ -34,10 +36,15 @@ export const LandingPage = () => {
           >
             {/* // rating removed from this - might want average user rating displayed */}
             {/* for each later */}
-            <div className="__restaurant-name-image-container__ mr-8">
-              <h2 style={{ fontSize: "2em", color: "red" }}>
-                {restaurant.name}
-              </h2>
+            <div className="__restaurant-name-image-container__ mr-20">
+              <div className="__restaurant-name-container__ text-center">
+                <h2 className="__restaurant-name__ text-2xl text-red-600 font-bold mb-3 truncate">
+                  {restaurant.name}
+                </h2>
+              </div>
+              <p className="__location__ text-red-600 text-center">
+                {restaurant.location}
+              </p>
               <img
                 src={restaurant.img_url}
                 alt={`Image of ${restaurant.name}`}
@@ -52,15 +59,29 @@ export const LandingPage = () => {
                 See Reviews
               </button>
             </div>
-            <div className="__restaurant-details__ font-bold flex flex-col justify-center items-center  mr-40">
-              <p style={{ color: "red" }}>{restaurant.location}</p>
-              <p style={{ color: "red" }}>
+            <div className="__restaurant-details__ font-bold flex flex-col justify-center items-center whitespace-nowrap mr-40">
+              {/* <p className="__location__ text-red-600">{restaurant.location}</p> */}
+              <p className="__price-range__ text-red-600">
                 {restaurant.price_range.price_range}
               </p>
-              <p style={{ color: "red" }}>
-                Hanger Level: {restaurant.hanger_level}
+              <p className="__hanger-level__ text-red-600">
+                Hanger Level:{" "}
+                {/* Array.from() creates a new Array instance. takes an object with a length property and creates an array with that length, filled with undefined values by default. We then .map() over this array, and for each undefined element (which we don't use, hence the _ as a placeholder), we return a flame icon */}
+                {Array.from({ length: restaurant.hanger_level }).map(
+                  (_, index) => (
+                    // We map over this array and return a FontAwesomeIcon component for each undefined element
+                    // The key property gives each icon a unique key, which React uses for rendering optimization
+                    <FontAwesomeIcon
+                      key={index}
+                      icon={faFire}
+                      className="text-red-600"
+                    />
+                  )
+                )}
               </p>
-              <p style={{ color: "red" }}>{restaurant.cuisine.type}</p>
+              <p className="__cuisine-type__ text-red-600">
+                {restaurant.cuisine.type}
+              </p>
               {/*img elements are self closing */}
             </div>
           </div>
