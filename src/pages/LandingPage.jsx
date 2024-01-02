@@ -42,7 +42,7 @@ export const LandingPage = () => {
                   {restaurant.name}
                 </h2>
               </div>
-              <p className="__location__ text-red-600 text-center">
+              <p className="__location__ text-red-600 text-center font-semibold">
                 {restaurant.location}
               </p>
               <img

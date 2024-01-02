@@ -53,25 +53,46 @@ export const EditReviewForm = () => {
   };
 
   return (
-    <div>
-      <h2>Edit Your Review</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Comment:
-          <textarea value={comment} onChange={handleCommentChange} />
-        </label>
-        <label>
-          Rating:
-          <select value={rating} onChange={handleRatingChange}>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
-          </select>
-        </label>
-        <button type="submit">Submit Edited Review</button>
-      </form>
+    <div className="__edit-review-container__ min-h-screen bg-black">
+      <h2 className="__edit-header__ text-2xl text-red-600 font-bold mb-10 flex justify-center">
+        Edit Your Review
+      </h2>
+      <div className="__review-form-card__ flex justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="__edit-form__ bg-gray-100 p-4 rounded-lg bg-opacity-25 shadow w-11/12 max-w-4xl flex flex-col mb-6"
+        >
+          <label className="__comment-label__ text-white mb-4 mr-4">
+            Comment:
+            <textarea
+              value={comment}
+              onChange={handleCommentChange}
+              rows="1"
+              className="__comment-area__ text-black ml-2"
+            />
+          </label>
+          <label className="__rating-label__ text-white mb-10 mr-2">
+            Rating:
+            <select
+              value={rating}
+              onChange={handleRatingChange}
+              className="__rating-text__ text-black ml-2"
+            >
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+          </label>
+          <button
+            className="__submit-edit-button__ bg-red-700 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300 mt-4 ml-2"
+            type="submit"
+          >
+            Submit Edited Review
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

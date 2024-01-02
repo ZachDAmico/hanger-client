@@ -64,64 +64,76 @@ export const RestaurantDetails = ({ currentUser }) => {
           className="__restaurant-img__ w-[500px] h-auto"
         />
       </div>
-      <h3 className="__review-header__ text-white text-3xl">Reviews</h3>
-      {restaurantDetails.reviews && restaurantDetails.reviews.length > 0 ? (
-        <ul className="__restaurant-details-list__ text-white space-y-4 flex flex-col items-center justify-center">
-          {restaurantDetails.reviews?.map((review) => (
-            <li
-              key={review.id}
-              className="__review-list__ bg-gray-100 p-4 rounded-lg bg-opacity-25 shadow w-11/12 max-w-4xl"
-            >
-              <p className="__username__ text-xl font-large text-white">
-                By: {review.user.username}{" "}
-              </p>
-              <p>Rating: {review.rating}</p>
-              <p className="__review__ text-base text-white">
-                {review.comment}
-              </p>
-              <p>Date: {review.date}</p>
-              {currentUser.id === review.user.id && (
-                <>
-                  <button
-                    onClick={() => handleDeleteReview(review.id)}
-                    className="__delete-button__ bg-orange-500 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300 mt-4 mr-2"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() => handleEditReview(review.id)}
-                    className="__review-button__ bg-red-700 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300 mt-4 ml-2"
-                  >
-                    Edit
-                  </button>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div>
-          <p>{restaurantDetails.name}</p>
-          <p className="__first-review text-white">Be the first review!</p>
+      <div className="edit-delete-container flex flex-col justify-around items-center my-4">
+        <button
+          onClick={handleAddingReview}
+          className="__review-button__ bg-red-700 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300 mt-4 ml-2"
+        >
+          Add a Review
+        </button>
+        <div className="favorite-checkbox mt-2">
+          <label className="__favorite__ text-white">
+            {favorite ? "Remove from Favorites" : "Add to Favorites"}
+          </label>
+          <input
+            type="checkbox"
+            checked={favorite}
+            name="favorite"
+            id="newFavorite"
+            onChange={handleFavoriteChange}
+          />
         </div>
-      )}
-      <button
-        onClick={handleAddingReview}
-        className="__review-button__ text-white"
-      >
-        Add a Review
-      </button>
-      <div>
-        <label className="__favorite__ text-white">
-          {favorite ? "Remove from Favorites" : "Add to Favorites"}{" "}
-        </label>
-        <input
-          type="checkbox"
-          checked={favorite}
-          name="favorite"
-          id="newFavorite"
-          onChange={handleFavoriteChange}
-        />
+      </div>
+      <div className="__reviews-section__ flex flex-col">
+        <h3 className="__review-header__ text-white text-3xl ml-60 mb-2">
+          Reviews:
+        </h3>
+        {restaurantDetails.reviews && restaurantDetails.reviews.length > 0 ? (
+          <ul className="__restaurant-details-list__ text-white bg-black space-y-4 flex flex-col items-center justify-center ">
+            {restaurantDetails.reviews?.map((review) => (
+              <li
+                key={review.id}
+                className="__review-list__ bg-gray-100 p-4 rounded-lg bg-opacity-25 shadow w-11/12 max-w-4xl"
+              >
+                <p className="__username__ text-xl font-large text-white">
+                  By: {review.user.username}{" "}
+                </p>
+                <p>Rating: {review.rating}</p>
+                <p className="__review__ text-base text-white">
+                  {review.comment}
+                </p>
+                <p>Date: {review.date}</p>
+                {currentUser.id === review.user.id && (
+                  <>
+                    <button
+                      onClick={() => handleDeleteReview(review.id)}
+                      className="__delete-button__ bg-orange-500 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300 mt-4 mr-2"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      onClick={() => handleEditReview(review.id)}
+                      className="__review-button__ bg-red-700 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300 mt-4 ml-2"
+                    >
+                      Edit
+                    </button>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>
+            <p>{restaurantDetails.name}</p>
+            <p className="__first-review text-white">Be the first review!</p>
+            <button
+              onClick={handleAddingReview}
+              className="__review-button__ text-white"
+            >
+              Add a Review
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
