@@ -51,7 +51,7 @@ export const LandingPage = () => {
                 style={{ width: "200px", height: "auto" }}
               />
               <button
-                className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300 mt-4"
+                className="__review-button__ bg-orange-500 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300 mt-4"
                 onClick={() => {
                   navigate(`/restaurants/${restaurant.id}`);
                 }}

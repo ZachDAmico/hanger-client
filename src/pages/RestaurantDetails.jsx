@@ -52,24 +52,46 @@ export const RestaurantDetails = ({ currentUser }) => {
     }
   };
   return (
-    <div>
-      <h2>{restaurantDetails.name}</h2>
-      <img src={restaurantDetails.img_url} alt={restaurantDetails.name} />
-      <h3>Reviews:</h3>
+    <div className="__review-container__ bg-black">
+      <h2 className="__restaurant-name__ text-2xl text-red-600 font-bold mb-3 flex justify-center">
+        {restaurantDetails.name}
+      </h2>
+      <div className="__img-container flex justify-center">
+        <img
+          src={restaurantDetails.img_url}
+          alt={restaurantDetails.name}
+          // style={{ width: "200px", height: "auto" }}
+          className="__restaurant-img__ w-[500px] h-auto"
+        />
+      </div>
+      <h3 className="__review-header__ text-white text-3xl">Reviews</h3>
       {restaurantDetails.reviews && restaurantDetails.reviews.length > 0 ? (
-        <ul>
+        <ul className="__restaurant-details-list__ text-white space-y-4 flex flex-col items-center justify-center">
           {restaurantDetails.reviews?.map((review) => (
-            <li key={review.id}>
-              <p>By: {review.user.username}</p>
+            <li
+              key={review.id}
+              className="__review-list__ bg-gray-100 p-4 rounded-lg bg-opacity-25 shadow w-11/12 max-w-4xl"
+            >
+              <p className="__username__ text-xl font-large text-white">
+                By: {review.user.username}{" "}
+              </p>
               <p>Rating: {review.rating}</p>
-              <p>{review.comment}</p>
+              <p className="__review__ text-base text-white">
+                {review.comment}
+              </p>
               <p>Date: {review.date}</p>
               {currentUser.id === review.user.id && (
                 <>
-                  <button onClick={() => handleDeleteReview(review.id)}>
+                  <button
+                    onClick={() => handleDeleteReview(review.id)}
+                    className="__delete-button__ bg-orange-500 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors duration-300 mt-4 mr-2"
+                  >
                     Delete
                   </button>
-                  <button onClick={() => handleEditReview(review.id)}>
+                  <button
+                    onClick={() => handleEditReview(review.id)}
+                    className="__review-button__ bg-red-700 text-white py-2 px-4 rounded hover:bg-orange-700 transition-colors duration-300 mt-4 ml-2"
+                  >
                     Edit
                   </button>
                 </>
@@ -80,12 +102,19 @@ export const RestaurantDetails = ({ currentUser }) => {
       ) : (
         <div>
           <p>{restaurantDetails.name}</p>
-          <p>Be the first review!</p>
+          <p className="__first-review text-white">Be the first review!</p>
         </div>
       )}
-      <button onClick={handleAddingReview}>Add a Review</button>
+      <button
+        onClick={handleAddingReview}
+        className="__review-button__ text-white"
+      >
+        Add a Review
+      </button>
       <div>
-        <label>{favorite ? "Remove from Favorites" : "Add to Favorites"}</label>
+        <label className="__favorite__ text-white">
+          {favorite ? "Remove from Favorites" : "Add to Favorites"}{" "}
+        </label>
         <input
           type="checkbox"
           checked={favorite}
