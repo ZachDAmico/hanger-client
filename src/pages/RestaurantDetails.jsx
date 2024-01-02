@@ -89,7 +89,7 @@ export const RestaurantDetails = ({ currentUser }) => {
           Reviews:
         </h3>
         {restaurantDetails.reviews && restaurantDetails.reviews.length > 0 ? (
-          <ul className="__restaurant-details-list__ text-white bg-black space-y-4 flex flex-col items-center justify-center ">
+          <ul className="__restaurant-details-list__ text-white bg-black space-y-4 flex flex-col items-center justify-center mb-4">
             {restaurantDetails.reviews?.map((review) => (
               <li
                 key={review.id}
