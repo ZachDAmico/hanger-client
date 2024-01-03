@@ -41,16 +41,12 @@ export const Register = ({ setCurrentUser }) => {
 
   return (
     <div
+      className="__register-background__  bg-black flex flex-col items-center justify-start min-h-screen bg-fixed"
       style={{
         backgroundImage: 'url("https://i.imgur.com/Aexb7zi.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "left",
-        backgroundColor: "black", // Set the background color to black
-        display: "flex", // Use flexbox for centering
-        flexDirection: "column", // Align children vertically
-        justifyContent: "flex-start", // Align children at the top
-        alignItems: "center", // Center vertically
-        minHeight: "100vh", // Ensure the div covers the full viewport height
+        backgroundSize: "2300px auto",
+        backgroundPosition: "calc(15% - 15px) calc(0% - 300px)",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <main className="container--login">
@@ -71,7 +67,9 @@ export const Register = ({ setCurrentUser }) => {
             style={{ color: "white" }}
           >
             <h1 className="text-4xl mt-7 mb-3">Hanger Management</h1>
-            <h2 className="text-xl mb-10">Register new account</h2>
+            <h2 className="text-xl mb-10 flex justify-center">
+              Register new account
+            </h2>
             <fieldset className="mb-4">
               <label htmlFor="firstName"> First name: </label>
               <input
