@@ -7,7 +7,7 @@ export const Authorized = () => {
       <>
         {/* double check NavBar import is correct */}
         <NavBar />
-        <main className="flex items-center justify-center">
+        <main className="__authorized-container__">
           <Outlet />
         </main>
       </>
