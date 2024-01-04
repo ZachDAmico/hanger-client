@@ -77,7 +77,7 @@ export const Register = ({ setCurrentUser }) => {
                 id="firstName"
                 value={firstName}
                 onChange={(evt) => setFirstName(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder=""
                 required
                 autoFocus
@@ -90,7 +90,7 @@ export const Register = ({ setCurrentUser }) => {
                 id="lastName"
                 value={lastName}
                 onChange={(evt) => setLastName(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder=""
                 required
                 autoFocus
@@ -103,7 +103,7 @@ export const Register = ({ setCurrentUser }) => {
                 id="inputUsername"
                 value={userName}
                 onChange={(evt) => setUserName(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder="User Name"
                 required
                 autoFocus
@@ -116,7 +116,7 @@ export const Register = ({ setCurrentUser }) => {
                 id="inputEmail"
                 value={email}
                 onChange={(evt) => setEmail(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder="Email address"
                 required
                 autoFocus
@@ -129,7 +129,7 @@ export const Register = ({ setCurrentUser }) => {
                 id="inputPassword"
                 value={password}
                 onChange={(evt) => setPassword(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder="Password"
               />
             </fieldset>
@@ -140,7 +140,7 @@ export const Register = ({ setCurrentUser }) => {
                 id="inputProfileImg"
                 value={imgUrl}
                 onChange={(evt) => setImgUrl(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder="ImageUrl"
               />
             </fieldset>

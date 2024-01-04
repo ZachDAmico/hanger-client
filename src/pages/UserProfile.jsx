@@ -35,7 +35,7 @@ export const UserProfile = ({ currentUser }) => {
           <section className="__profile-container__">
             <div className="__profile-details__ bg-black flex flex-col items-center">
               <div key="info-1" className="__profile-pic__ text-white">
-                Profile Pic placeholder
+                {/* Profile Pic placeholder */}
               </div>
               {/* <div key="info-2">First Name: {user.first_name}</div> */}
               {/* <div key="info-3">Last Name: {user.last_name}</div> */}

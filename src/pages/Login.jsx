@@ -68,7 +68,7 @@ export const Login = ({ setCurrentUser }) => {
                 id="inputUsername"
                 value={username}
                 onChange={(evt) => setUsername(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder="Username"
                 required
                 autoFocus
@@ -81,7 +81,7 @@ export const Login = ({ setCurrentUser }) => {
                 id="inputPassword"
                 value={password}
                 onChange={(evt) => setPassword(evt.target.value)}
-                className="form-control"
+                className="form-control text-black"
                 placeholder="Password"
               />
             </fieldset>
